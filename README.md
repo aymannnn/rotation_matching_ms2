@@ -14,3 +14,7 @@ Didn't use any linear optimization because a bit difficult to figure out with th
 Then, repeat 1-4 about 10,000 times until a solution is found. This is a little more complex in reality because there are lots of conditions, checking to make sure there are spaces in general and subspeciality rotations in certain blocks before running the algorithm etc. But ultimately works real well. 
 
 Hard code the path variables to the real data and export. That's it!
+
+TODO:
+
+One day will maybe implement a small check, where if somebody matches into their top 1-3 or so pick for general then will just randomly shuffle the subspecialties instead of ranking them too. 
