@@ -81,7 +81,7 @@ rotation_information = [
     Rotation("DUH Colorectal", "DUH", 2, False),
     Rotation("DUH Pediatrics", "DUH", 1, False),
     Rotation("DUH Trauma/ACS", "DUH", 2, False),
-    Rotation("DUH VSU", "DUH", 2, True),
+    Rotation("DUH VSU", "DUH", 1, True),
     Rotation("DUH Breast/Endocrine", "DUH", 1, True),
     Rotation("DUH Cardiac", "DUH", 2, True),
     Rotation("DUH Thoracic", "DUH", 2, True)
