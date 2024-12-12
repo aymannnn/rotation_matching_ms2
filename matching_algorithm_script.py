@@ -16,8 +16,8 @@ NO_OPEN_BLOCK = 2
 MAX_ITERATIONS = 1
 
 TEST = False
-DATA_PATH = 'student_data/block_two/data.csv'
-EXPORT_PATH = 'results/block_two/'
+DATA_PATH = 'student_data/block_three/three_data.csv'
+EXPORT_PATH = 'results/block_three/'
 
 class Rotation:
     
@@ -82,7 +82,7 @@ rotation_information = [
     Rotation("DUH Pediatrics", "DUH", 1, False),
     Rotation("DUH Trauma/ACS", "DUH", 2, False),
     Rotation("DUH VSU", "DUH", 1, True),
-    Rotation("DUH Breast/Endocrine", "DUH", 1, True),
+    Rotation("DUH Breast/Endocrine", "DUH", 2, True),
     Rotation("DUH Cardiac", "DUH", 2, True),
     Rotation("DUH Thoracic", "DUH", 2, True)
 ]
@@ -279,10 +279,12 @@ def generate_solution(df_student_preferences,
                 break
             else:
                 preferred_choice += 1
-                if preferred_choice >= len(subspec_pref_sorted) - 1:
+                # TODO: 12/11/24 updated this to len(subspec_pref_sorted) + 0
+                # instead of -1 because preferred choice is updated above
+                if preferred_choice >= len(subspec_pref_sorted):
                     student_assignments = None
                     return student_assignments
-            
+          
     return student_assignments
 
 def simple_matching_algorithm(df_student_preferences):

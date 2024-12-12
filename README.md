@@ -17,4 +17,5 @@ Hard code the path variables to the real data and export. That's it!
 
 TODO:
 
-One day will maybe implement a small check, where if somebody matches into their top 1-3 or so pick for general then will just randomly shuffle the subspecialties instead of ranking them too. 
+1. One day will maybe implement a small check, where if somebody matches into their top 1-3 or so pick for general then will just randomly shuffle the subspecialties instead of ranking them too. 
+2. (Urgent) Need to have a check for whether or not there are enough subspecialty and general positions to HAVE a solution possible, issue ran up when one less vascular position made fits impossible. Modified with extra breast position.
