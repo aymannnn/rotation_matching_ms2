@@ -16,8 +16,8 @@ NO_OPEN_BLOCK = 2
 MAX_ITERATIONS = 1
 
 TEST = False
-DATA_PATH = 'student_data/block_three/three_data.csv'
-EXPORT_PATH = 'results/block_three/'
+DATA_PATH = 'student_data/block_six/six_data.csv'
+EXPORT_PATH = 'results/block_six/'
 
 class Rotation:
     

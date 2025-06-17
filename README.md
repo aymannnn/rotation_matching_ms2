@@ -1,3 +1,17 @@
+## How to Run the Algorithm
+
+1. Most important: make sure your data matches the format of the test_data.csv. The column names are the most common error (usually sent a sheet with a space somewhere or the Name column named something else) and usually very easy to debug.
+2. The more annoying error is if people reuse or number incorrectly, but lately hasn't been an issue.
+3. Hard code the path variables to the real data and export in lines 19/20 in the python script (matching_algorithm_script.py)
+4. That's it! Doesn't take long to run. 
+
+## Notes for Future Updates/Implementation
+
+1. If the rotation information number of available spots change you'l lhave to change that (the list in lines 72-88)
+   a. Note that the most annoying part about this is that if there is some issue with availability in spots per block then it'll be very hard to debug.
+
+## About the Algorithm
+
 This serves to match students at Duke into their rotations, with the following contrains:
 
 1. Two blocks, each block has restrictions on the amount of students per rotation (hard coded in)
@@ -13,9 +27,3 @@ Didn't use any linear optimization because a bit difficult to figure out with th
 
 Then, repeat 1-4 about 10,000 times until a solution is found. This is a little more complex in reality because there are lots of conditions, checking to make sure there are spaces in general and subspeciality rotations in certain blocks before running the algorithm etc. But ultimately works real well. 
 
-Hard code the path variables to the real data and export. That's it!
-
-TODO:
-
-1. One day will maybe implement a small check, where if somebody matches into their top 1-3 or so pick for general then will just randomly shuffle the subspecialties instead of ranking them too. 
-2. (Urgent) Need to have a check for whether or not there are enough subspecialty and general positions to HAVE a solution possible, issue ran up when one less vascular position made fits impossible. Modified with extra breast position.
