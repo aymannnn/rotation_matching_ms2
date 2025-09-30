@@ -17,7 +17,7 @@ st.caption(
 )
 
 
-readme_text = Path("README.md").read_text(encoding="utf-8")
+readme_text = Path("README_streamlit.md").read_text(encoding="utf-8")
 
 with st.sidebar:
     with st.expander("📄 Instructions", expanded=True):
