@@ -11,7 +11,7 @@ st.set_page_config(page_title="Rotation Matcher",
                    page_icon="🩺",
                    layout="wide")
 
-st.title("The Medical Student Rotation Matcher - Dedicated to Dr. Jackson")
+st.title("The Medical Student Rotation Matcher")
 st.caption(
     "Upload a CSV of student preferences and download the assigned rotations."
 )
@@ -386,7 +386,7 @@ if st.button("Generate sample data"):
     )
 
 # Algorithm attempts slider (main page)
-attempts = st.slider("Algorithm attempts", min_value=100, max_value=50000, value=10000, step=100,
+attempts = st.slider("Algorithm attempts", min_value=100, max_value=20000, value=10000, step=100,
                      help="Higher attempts increase chance of lower cost, at the expense of longer wait times.")
 
 
