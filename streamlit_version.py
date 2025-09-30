@@ -386,7 +386,7 @@ if st.button("Generate sample data"):
     )
 
 # Algorithm attempts slider (main page)
-attempts = st.slider("Algorithm attempts", min_value=100, max_value=20000, value=10000, step=100,
+attempts = st.slider("Algorithm attempts", min_value=100, max_value=3000, value=1000, step=100,
                      help="Higher attempts increase chance of lower cost, at the expense of longer wait times.")
 
 

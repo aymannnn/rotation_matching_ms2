@@ -19,7 +19,7 @@ Then, repeat 1-4 about many times until a solution is found.
 
 1. Format your data! You may generate sample data with this script, but you have to make sure that your input data columns match EXACTLY ... I didn't implement a check, it will just fail if you don't.
 2. I do check to make sure that people don't reuse or number incorrecty. If that's the case, their loss, you may do with that person's data what you wish.
-3. Set the amount of iterations you would like to do on the slider. I recommend 10,000. More takes longer. 
+3. Set the amount of iterations you would like to do on the slider. I recommend doing about 1,000 iterations. More takes longer. 
 4. Wait and download your final CSV!
 
 ## Modifying Rotation Capacity per Block
