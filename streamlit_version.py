@@ -377,7 +377,7 @@ def _generate_sample_df(n):
 
 if st.button("Generate sample data"):
     sample_df = _generate_sample_df(int(students_n))
-    st.dataframe(sample_df.head(20), use_container_width=True)
+    st.dataframe(sample_df.head(20), width=True)
     st.download_button(
         label="Download sample CSV",
         data=sample_df.to_csv(index=False).encode("utf-8"),
@@ -425,7 +425,7 @@ if uploaded is not None:
         st.stop()
 
     st.subheader("Preview")
-    st.dataframe(df.head(20), use_container_width=True)
+    st.dataframe(df.head(20), width=True)
 
 # Run quick validator
 errors = _validate_preferences(df, ROTATION_NAMES) if 'df' in locals() else []
@@ -447,7 +447,7 @@ if 'df' in locals():
             st.success(f"Done! Total preference cost: {cost}")
 
             st.subheader("Assignments")
-            st.dataframe(assignments, use_container_width=True)
+            st.dataframe(assignments, width=True)
 
             # Download CSV
             csv_bytes = assignments.to_csv(index=False).encode('utf-8')
