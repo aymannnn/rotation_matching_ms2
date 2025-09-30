@@ -16,8 +16,8 @@ NO_OPEN_BLOCK = 2
 MAX_ITERATIONS = 1
 
 TEST = False
-DATA_PATH = 'student_data/block_six/six_data.csv'
-EXPORT_PATH = 'results/block_six/'
+DATA_PATH = 'student_data/block_one/data.csv'
+EXPORT_PATH = 'results/block_one/'
 
 class Rotation:
     
@@ -68,6 +68,7 @@ class Rotation:
 
 
 # defines all rotations possible
+# the true false flag is subspecialty
 
 rotation_information = [
     Rotation("VA General Surgery", "VA", 1, False),
@@ -81,7 +82,7 @@ rotation_information = [
     Rotation("DUH Colorectal", "DUH", 2, False),
     Rotation("DUH Pediatrics", "DUH", 1, False),
     Rotation("DUH Trauma/ACS", "DUH", 2, False),
-    Rotation("DUH VSU", "DUH", 1, True),
+    Rotation("DUH VSU", "DUH", 3, True),
     Rotation("DUH Breast/Endocrine", "DUH", 2, True),
     Rotation("DUH Cardiac", "DUH", 2, True),
     Rotation("DUH Thoracic", "DUH", 2, True)
