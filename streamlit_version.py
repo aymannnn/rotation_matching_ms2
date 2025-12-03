@@ -42,9 +42,8 @@ ROTATION_NAMES = [
     'DUH Trauma/ACS',
     'DUH VSU',
     'DUH Breast/Endocrine',
-    'DUH Cardiac',
     'DUH Thoracic',
-    'DUH Melanoma',
+    'DUH Melanoma'
 ]
 
 # Location/subspecialty/default capacity for each rotation
@@ -74,8 +73,6 @@ ROTATION_META = [
     {"name": "DUH VSU",                "location": "DUH",
         "subspecialty": True,  "default_max": 3},
     {"name": "DUH Breast/Endocrine",   "location": "DUH",
-        "subspecialty": True,  "default_max": 2},
-    {"name": "DUH Cardiac",            "location": "DUH",
         "subspecialty": True,  "default_max": 2},
     {"name": "DUH Thoracic",           "location": "DUH",
         "subspecialty": True,  "default_max": 2},
