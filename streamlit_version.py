@@ -156,14 +156,26 @@ class Rotation:
 
     def add_specific_block(self, block):
         # Returns True if assignment succeeded, else False
-        if block == INDEX_BLOCK_ONE and not self.full_block_one:
+        if block == INDEX_BLOCK_ONE:
+            # Enforce capacity for block one
+            if self.block_one_count >= self.maximum_students:
+                # Mark as full and refuse the assignment
+                self._update_full_flags()
+                return False
             self.block_one_count += 1
             self._update_full_flags()
             return True
-        elif block == INDEX_BLOCK_TWO and not self.full_block_two:
+
+        elif block == INDEX_BLOCK_TWO:
+            # Enforce capacity for block two
+            if self.block_two_count >= self.maximum_students:
+                # Mark as full and refuse the assignment
+                self._update_full_flags()
+                return False
             self.block_two_count += 1
             self._update_full_flags()
             return True
+
         return False
 
     def _update_full_flags(self):
@@ -349,7 +361,7 @@ with st.sidebar:
     for name in ROTATION_NAMES:
         capacities[name] = st.number_input(
             label=name,
-            min_value=0,
+            min_value=1,
             value=int(DEFAULT_CAPACITY[name]),
             step=1,
             help="Max students per block for this rotation",
@@ -396,9 +408,11 @@ Read the instructions in the sidebar before uploading your data.
 """
 )
 
-uploaded = st.file_uploader("Upload Student Data CSV", type=[
-                            "csv"], accept_multiple_files=False)
-
+uploaded = st.file_uploader(
+    "Upload Student Data CSV",
+    type=["csv"],
+    accept_multiple_files=False,
+)
 
 if uploaded is not None:
     try:
@@ -407,17 +421,19 @@ if uploaded is not None:
         st.error(f"Couldn't read CSV: {e}")
         st.stop()
 
-    if 'Name' not in df.columns:
+    if "Name" not in df.columns:
         st.error("CSV must include a 'Name' column.")
         st.stop()
 
-    # Validate rotation columns
+    # Validate rotation columns: require all expected columns
     missing_columns = [r for r in ROTATION_NAMES if r not in df.columns]
     if missing_columns:
-        st.warning(
-            "Some expected rotation columns are missing: " +
-                ", ".join(missing_columns)
+        st.error(
+            "Some expected rotation columns are missing: "
+            + ", ".join(missing_columns)
+            + ". Please add these columns to your CSV and re-upload."
         )
+        st.stop()
 
     present_rot_cols = [c for c in ROTATION_NAMES if c in df.columns]
     if not present_rot_cols:
@@ -428,8 +444,8 @@ if uploaded is not None:
     st.dataframe(df.head(20), use_container_width=True)
 
 # Run quick validator
-errors = _validate_preferences(df, ROTATION_NAMES) if 'df' in locals() else []
-if 'df' in locals():
+errors = _validate_preferences(df, ROTATION_NAMES) if "df" in locals() else []
+if "df" in locals():
     if errors:
         for e in errors:
             st.error(e)
@@ -437,20 +453,34 @@ if 'df' in locals():
     else:
         st.success("Validation passed.")
 
+    # Ensure rotation ranking columns are numeric, matching validation
+    present_rot_cols = [c for c in ROTATION_NAMES if c in df.columns]
+    for c in present_rot_cols:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+
+    # Double-check nothing turned into NaN during coercion
+    if df[present_rot_cols].isna().any().any():
+        st.error(
+            "Ranking columns contain missing or non-numeric values after parsing. "
+            "Please fix the CSV and re-upload."
+        )
+        st.stop()
+
     # Build Rotation objects with current capacities
     rotation_defs = _build_rotations(capacities)
 
     run = st.button("Run Matching")
     if run:
         try:
-            assignments, cost = _simple_match(df, rotation_defs, max_attempts=attempts)
+            assignments, cost = _simple_match(
+                df, rotation_defs, max_attempts=attempts)
             st.success(f"Done! Total preference cost: {cost}")
 
             st.subheader("Assignments")
             st.dataframe(assignments, use_container_width=True)
 
             # Download CSV
-            csv_bytes = assignments.to_csv(index=False).encode('utf-8')
+            csv_bytes = assignments.to_csv(index=False).encode("utf-8")
             st.download_button(
                 label="Download assignments CSV",
                 data=csv_bytes,
